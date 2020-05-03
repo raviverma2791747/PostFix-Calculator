@@ -3,8 +3,10 @@
 #include<string>
 #include<vector>
 #include<stack>
+#include"tree.h"
 
-struct node
+
+/*struct node
 {
     char data;
     node* left;
@@ -24,6 +26,8 @@ struct node
 
     }
 };
+
+
 
 
 node* AddNode(char data)
@@ -61,6 +65,8 @@ void Destroy(node* root)
         delete root;
     }
 }
+*/
+
 
 bool IsOperator(char str)
 {
@@ -75,6 +81,7 @@ bool IsOperator(char str)
     return false;
 }
 
+/*
 void LevelSpace(int level)
 {
     unsigned char drawchar = 179 ;
@@ -235,6 +242,7 @@ std::string InfixToPostFix( std::string infix)
     }
     return postfix;
 }
+*/
 int main()
 {
     //std::string postfix = "ABC*DEF^/G*-H*+";
@@ -242,17 +250,32 @@ int main()
     //std::string postfix = "AB+C*D/EF^+G/";
     //std::string postfix = "ABCD+EF+*G/+*H*";
     //std::string postfix = "ABCDEFGHIJKLMNOP+-+/+^*/*+-++++";
-    node* root = nullptr;
-    std::string infix;
+    //node* root = nullptr;
+    //std::string infix;
     //infix = "(A+B)*C/D";
     //infix = "((A+B)*C/D+E^F)/G";
    // infix = "A*(B+(C+D)*(E+F)/G)*H";
-    infix = "A+(B*C-(D/E^F)*G)*H";
-    std::string expression = InfixToPostFix(infix);
-    std::cout << expression << std::endl;
-    root = CreateTree(expression);
-    DrawTree(root, 1);
-    Destroy(root);
+   // infix = "A+(B*C-(D/E^F)*G)*H";
+    //std::string expression = InfixToPostFix(infix);
+    //std::cout << expression << std::endl;
+   // root = CreateTree(expression);
+    //DrawTree(root, 1);
+    //Destroy(root);
+    tree::node<int>* root = nullptr;
+    root = new tree::node<int>(10);
+    root->link.push_back(new tree::node<int>(20));
+    root->link.push_back(new tree::node<int>(30));
+    root->link.push_back(new tree::node<int>(40));
+    root->link[0]->link.push_back(new tree::node<int>(20));
+    root->link[0]->link.push_back(new tree::node<int>(30));
+    root->link[0]->link.push_back(new tree::node<int>(40));
+    root->link[0]->link[0]->link.push_back(new tree::node<int>(20));
+    root->link[0]->link[0]->link.push_back(new tree::node<int>(30));
+    root->link[0]->link[0]->link.push_back(new tree::node<int>(40));
+    tree::DrawTree<int>(root,1);
+    tree::Search<int>(root,7);
+    tree::Destroy<int>(root);
+    std::cin.get();
     return 0;
 }
 
